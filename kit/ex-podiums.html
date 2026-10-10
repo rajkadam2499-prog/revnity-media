@@ -1,0 +1,22 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="style.css"><script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<style>.num{position:absolute;z-index:3;transform:translate(-50%,-100%);text-align:center;color:#fff}.num b{display:block;font-size:76px;font-weight:900;text-shadow:0 0 24px rgba(92,242,160,.6)}.num i{display:block;font-style:normal;font-size:24px;font-weight:700}.num s{display:block;text-decoration:none;font-size:19px;color:#a9cfca;margin-top:4px}</style></head>
+<body class="dark"><canvas id="c"></canvas>
+<div class="head"><img class="logo" src="logo-transparent.png"><h1 style="color:#fff">The 3 numbers behind<br><span>every Revnity list</span></h1><div class="sub">Each one fixes a way competitor campaigns fail.</div></div>
+<div class="foot" style="color:#cfe3e1"><div>B2B SaaS &amp; IT · NA · EMEA · APAC · LATAM</div><div>revnitymarketing.com</div></div>
+<script type="module">
+import {fit,THREE,makeStage,M,pin,project} from './common.js';
+const {r,scene,cam,W,H}=makeStage('c',{fov:28,camPos:[0,10,27],target:[0,0.4,0]});
+scene.children.forEach(o=>{if(o.material&&o.material.isShadowMaterial)o.material.opacity=0.4;});
+const disc=new THREE.Mesh(new THREE.CylinderGeometry(7.2,7.2,0.3,128),M.glossy(0x0d3a40,{roughness:0.25}));disc.position.y=-0.15;disc.receiveShadow=true;disc.userData.skip=true;scene.add(disc);
+const edge=new THREE.Mesh(new THREE.TorusGeometry(7.2,0.05,12,160),M.emissive(0x3fd98a,1.4));edge.rotation.x=Math.PI/2;edge.userData.skip=true;scene.add(edge);
+const B=[[-4.4,0x2bb5a8,2.0,'98%','email deliverability','no bounces, safe domain'],[0,0x3fd98a,3.0,'100%','tech usage guarantee','every account runs the tech'],[4.4,0x8fdc5a,2.5,'5,000+','technologies covered','including niche rivals']];
+const tops=[];
+B.forEach(([x,c,h])=>{const m=new THREE.Mesh(new THREE.CylinderGeometry(1.75,1.75,h,96),M.glossy(c,{roughness:0.16}));m.position.set(x,h/2,0);m.castShadow=true;scene.add(m);
+ const cap=new THREE.Mesh(new THREE.TorusGeometry(1.75,0.05,12,96),M.emissive(0xd9ffe9,1.2));cap.rotation.x=Math.PI/2;cap.position.set(x,h,0);scene.add(cap);
+ const o=new THREE.Object3D();o.position.set(x,h+0.15,0);scene.add(o);tops.push(o);});
+
+const glow=new THREE.PointLight(0x5cf2a0,40,14);glow.position.set(0,6,3);scene.add(glow);
+fit(scene,cam,W,H,{top:840,bottom:1060,left:170,right:910});r.render(scene,cam);
+B.forEach((b,i)=>{const [x,y]=project(tops[i],cam,W,H);const d=document.createElement('div');d.className='num';d.innerHTML='<b>'+b[3]+'</b><i>'+b[4]+'</i><s>'+b[5]+'</s>';d.style.left=[205,540,875][i]+'px';d.style.top=(i==1?'700px':'760px');document.body.appendChild(d);});
+window.__done=true;
+</script></body></html>

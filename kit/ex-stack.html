@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="style.css"><script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<style>.lab{position:absolute;z-index:3;width:300px}.lab b{display:block;font-size:27px;font-weight:800;color:#fff}.lab i{font-style:normal;font-size:20px;color:#a9cfca}.lab.r{text-align:left}.lab.l{text-align:right}</style></head>
+<body class="dark"><canvas id="c"></canvas>
+<div class="head"><img class="logo" src="logo-transparent.png"><h1 style="color:#fff">Technographic data,<br><span>explained in plain English</span></h1><div class="sub">Five layers. The higher you go, the closer you are to a deal.</div></div>
+<div class="foot" style="color:#cfe3e1"><div>5,000+ technologies · 100% tech usage guarantee</div><div>revnitymarketing.com</div></div>
+<script type="module">
+import {fit,THREE,makeStage,M,project} from './common.js';
+const {r,scene,cam,W,H}=makeStage('c',{fov:28,camPos:[0,12,25],target:[0,0.2,0]});
+scene.children.forEach(o=>{if(o.material&&o.material.isShadowMaterial)o.material.opacity=0.35;});
+const L=[[0x1e6f74,'Firmographics','who a company is'],[0x2bb5a8,'Technographics','what a company runs'],[0x3fd98a,'Install base','customers of one vendor'],[0x8fdc5a,'Usage verification','in active use, right now'],[0xe8d867,'Displacement','selling to a rival\'s customers']];
+const disks=[];
+L.forEach(([c,t,d],i)=>{const rad=2.7-i*0.43;const m=new THREE.Mesh(new THREE.CylinderGeometry(rad,rad,0.62,96),M.glossy(c,{roughness:0.18}));
+ m.position.y=0.31+i*0.86;m.castShadow=true;m.receiveShadow=true;scene.add(m);disks.push([m,rad]);
+ const ring=new THREE.Mesh(new THREE.TorusGeometry(rad+0.02,0.035,12,128),M.emissive(0xbfffe6,0.9));ring.rotation.x=Math.PI/2;ring.position.y=m.position.y+0.31;scene.add(ring);});
+const glow=new THREE.PointLight(0x5cf2a0,30,12);glow.position.set(0,6,2);scene.add(glow);
+fit(scene,cam,W,H,{top:450,bottom:1200,left:280,right:800});r.render(scene,cam);
+L.forEach(([c,t,d],i)=>{const [m,rad]=disks[i];const right=i%2==0;
+ const p=new THREE.Object3D();p.position.set(right?rad:-rad,m.position.y,0);scene.add(p);const [x,y]=project(p,cam,W,H);
+ const el=document.createElement('div');el.className='lab '+(right?'r':'l');el.innerHTML='<b>'+t+'</b><i>'+d+'</i>';
+ el.style.top=(y-30)+'px';if(right){el.style.left=(x+40)+'px';}else{el.style.left=(x-340)+'px';}document.body.appendChild(el);
+ const ln=document.createElement('div');ln.style.cssText='position:absolute;z-index:3;height:2px;background:#5cf2a0;box-shadow:0 0 8px #5cf2a0;top:'+y+'px;left:'+(right?x+4:x-36)+'px;width:32px';document.body.appendChild(ln);});
+window.__done=true;
+</script></body></html>

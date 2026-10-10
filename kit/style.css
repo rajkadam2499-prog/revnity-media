@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;font-family:Inter,Arial,sans-serif;overflow:hidden;position:relative}
+body.light{background:radial-gradient(ellipse at 50% 55%,#ffffff 0%,#eefbf6 45%,#d6f3ea 100%);color:#0d2b33}
+body.dark{background:radial-gradient(ellipse at 50% 58%,#0f4a52 0%,#072a33 45%,#03121a 100%);color:#fff}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.head{position:absolute;top:58px;left:0;right:0;text-align:center;z-index:2}
+.logo{height:74px}
+h1{margin-top:26px;font-size:70px;font-weight:900;line-height:1.05;letter-spacing:-.02em}
+h1 span{background:linear-gradient(90deg,#2bb5a8,#3fd98a 60%,#a8d84a);-webkit-background-clip:text;color:transparent}
+.light h1{color:#0d2b33}
+.sub{margin-top:16px;font-size:27px;opacity:.75}
+.tag{position:absolute;z-index:3;transform:translate(-50%,-50%);padding:13px 26px;border-radius:40px;font-weight:700;font-size:23px;white-space:nowrap;
+ background:linear-gradient(90deg,#2bb5a8,#3fd98a);color:#fff;box-shadow:0 8px 24px rgba(43,181,168,.35)}
+.tag.grey{background:#fff;color:#55707a;border:2px solid #d5e6e3;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.dark .tag.grey{background:rgba(15,40,48,.9);color:#cfe3e1;border-color:#2c5560}
+.callout{position:absolute;left:110px;right:110px;bottom:150px;z-index:3;text-align:center;padding:28px 34px;border-radius:26px;font-size:28px;font-weight:600;color:#fff;
+ background:linear-gradient(90deg,#2bb5a8,#3fd98a);box-shadow:0 14px 40px rgba(43,181,168,.35)}
+.foot{position:absolute;left:70px;right:70px;bottom:52px;z-index:3;display:flex;justify-content:space-between;font-size:22px;font-weight:600;opacity:.8}
