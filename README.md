@@ -20,6 +20,7 @@ Images for the Revnity Marketing LinkedIn company page. Publora fetches each pos
 - Every post gets a different 3D concept (pins, layered stack, funnel, podiums, bridge, magnet,
   radar, target, magnifying glass, puzzle, compass, shield, ladder, key/lock...). Don't repeat a
   concept within 2 weeks.
-- Facts only: 98% email deliverability, 100% tech usage guarantee, 5,000+ technologies,
+- Facts only: 45K+ software products & technologies, 25M+ companies, 2K+ IT companies served,
+  30-45 day refresh cycle, 98% email deliverability, 100% tech usage guarantee,
   NA/EMEA/APAC/LATAM. Never name clients or competitor data providers, never mention
   scraping/crawling or data-detection methods.
